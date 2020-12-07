@@ -20,32 +20,6 @@ export class LoginComponent {
   submitted = false;
   respuesta: boolean;
 
-    login() {
-
-
-    this.submitted = true;
-    
-    const usuario: UsuarioDto = {
-      username: this.email,
-      password: this.password,
-      nombre: "", 
-      apellidos: "", 
-      email : "", 
-      telefono: 1,
-    }
-    this.servicioUsuario
-      .getLogin(usuario)
-      .subscribe({
-      next: (resp: boolean) => {
-        this.respuesta = resp;
-      },
-      error:  (err) => {
-        console.error(err);
-      },
-      complete: () => (this.updateAddress()),
-    });
-    
-  }
   
   updateAddress(): void {
     console.log(this.respuesta);
@@ -67,4 +41,20 @@ export class LoginComponent {
     return new Promise( resolve => setTimeout(resolve, ms) );
 }
 
+ login() {
+
+
+  this.servicioUsuario
+  .SingIn(this.email,this.password)
+  .subscribe({
+  next: (resp: boolean) => {
+    this.respuesta = resp;
+  },
+  error:  (err) => {
+    console.error(err);
+  },
+  complete: () => (this.updateAddress()),
+});
+
+}
 }

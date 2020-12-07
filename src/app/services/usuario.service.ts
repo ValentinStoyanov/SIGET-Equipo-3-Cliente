@@ -14,10 +14,15 @@ export class UsuarioService {
   constructor(private readonly http: HttpClient) {
   }
 
-//
-  getLogin(usuario: UsuarioDto): any {
-    return this.http.post<any>(`https://siget-grupo2.herokuapp.com/usuarios/login?username=${usuario.username}&password=${usuario.password}`, {});
+
+  SingIn(username: string, password: string):any {
+    return this.http.post<any>(`http://localhost:8080/api/auth/signin`,{ type : "Login",
+     username : username,
+      password : password});
   }
+
+
+//
 
 
   getAll(): Observable<UsuarioDto[]> {
