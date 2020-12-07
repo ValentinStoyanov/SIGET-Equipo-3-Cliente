@@ -48,13 +48,13 @@ export class VerReunionesComponent implements OnInit {
 
   updateCalendar(): void {
     this.reuniones.forEach(reunion => {
-      console.log(reunion.temas);
+      console.log(reunion.titulo);
       let evento: EventInput = 
         {
           id: createEventId(),
-          title: reunion.temas,
-          start: new Date(reunion.horaInicio),
-          end: new Date(reunion.horaFin),
+          title: reunion.titulo,
+          start: new Date(reunion.mes+"/"+reunion.dia+"/"+reunion.ano+" "+reunion.hora),
+          end: new Date(reunion.mes+"/"+reunion.dia+"/"+reunion.ano+" "+reunion.hora),
         }
       this.eventosReuniones.push(evento);
       console.log(this.eventosReuniones);
@@ -110,50 +110,6 @@ export class VerReunionesComponent implements OnInit {
 
   handleEventClick(clickInfo: EventClickArg) {
     //Implementar si queremos que haga algo al hacer click en la reunion en el calendario.    
-    
-    if(this.deleteboolean==true){
-
-    var fecha_final = clickInfo.event.startStr.substring(5,7)
-    +"/"+clickInfo.event.startStr.substring(8,10)
-    +"/"+clickInfo.event.startStr.substring(0,4)
-    +" "+clickInfo.event.startStr.substring(11,16)
-
-    
-    for (let i = 0; i < this.reuniones.length; i++){
-      if(this.reuniones[i].horaInicio==fecha_final){
-        var reun = this.reuniones[i]
-      }
-    }
-    
-    if(reun.convocante==localStorage.getItem("name")){
-          alert("Borrando") 
-
-          this.reunionService.deleteByHoraInicio(reun)
-
-          window.location.reload();//Reload windows provisional y con comportamiento erratico
-
-    }else{
-      alert("Imposible borrar, no eres el usuario que ha creado esta reunion")
-    }
-      
-    }else{
-      for (let i = 0; i < this.reuniones.length; i++){
-        if(this.reuniones[i].temas==clickInfo.event.title){
-          var convo = this.reuniones[i].convocante  
-          var assis = this.reuniones[i].asistentes
-          var desc = this.reuniones[i].descripcion
-          var fechainici = this.reuniones[i].horaInicio
-          var fechafinal = this.reuniones[i].horaFin
-        }
-      }
-      
-      alert('Tema: ' + clickInfo.event.title + " \n"
-      +"Fecha y hora de inicio: "+fechainici+"\n"
-      +"Fecha y hora de final: " +fechafinal+"\n"
-      +"Convocante: "+convo+"\n"
-      +"Assistentes: "+assis+"\n"
-      +"Descripcion: "+desc)
-    }
     
 
   }
