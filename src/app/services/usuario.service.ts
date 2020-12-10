@@ -34,9 +34,12 @@ export class UsuarioService {
     );
   }
 
-  createUsuario(usuario: UsuarioDto): any {
-    return this.http.post<any>(`https://siget-grupo2.herokuapp.com/usuarios/createUsuario?username=${usuario.username}&password=${usuario.password}&nombre=${usuario.nombre}&apellidos=${usuario.apellidos}&email=${usuario.email}&telefono=${usuario.telefono}
-    `, {}).subscribe({
+  createUsuario(username: string, email: string, password: string): any {
+    return this.http.post<any>(`http://localhost:8080/api/auth/signup
+    `, {type: "Register",
+    username: username,
+    email: email,
+    password: password}).subscribe({
       next: data => {
           this.postId = data.id;
       },
