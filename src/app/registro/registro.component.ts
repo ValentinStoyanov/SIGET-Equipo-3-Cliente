@@ -12,10 +12,7 @@ export class RegistroComponent implements OnInit {
 
     username: string;
     password: string;
-    nombre: string;
-    apellidos: string;
     email: string;
-    telefono: number;
 
     constructor(private servicioUsuario: UsuarioService) { }
 
