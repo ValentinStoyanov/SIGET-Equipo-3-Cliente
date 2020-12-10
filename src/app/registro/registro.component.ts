@@ -27,19 +27,10 @@ export class RegistroComponent implements OnInit {
 
     metodoRegistrar() {
         
-
-        const usuario: UsuarioDto = {
-            username: this.username,
-            password: this.password,
-            nombre: this.nombre,
-            apellidos: this.apellidos,
-            email: this.email,
-            telefono: this.telefono,
-        }
         //if( !(this.password.length<8) && !(this.password===this.password.toLowerCase()) && !(this.password === this.password.toUpperCase()) && !(this.password.search(/[0-9]/)<0) ){
         if (!(this.password.length < 8) && !(this.password === this.password.toLowerCase()) && !(this.password === this.password.toUpperCase())) {
             
-            this.servicioUsuario.createUsuario(usuario);
+            this.servicioUsuario.createUsuario(this.username, this.email, this.password);
             alert('Usuario creado')
            
         } else {

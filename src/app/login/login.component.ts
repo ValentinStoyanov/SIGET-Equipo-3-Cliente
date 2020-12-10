@@ -20,7 +20,6 @@ export class LoginComponent {
   submitted = false;
   respuesta: boolean;
 
-  
   updateAddress(): void {
     console.log(this.respuesta);
     if(this.respuesta){
@@ -40,7 +39,7 @@ export class LoginComponent {
   delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
 }
-
+  
  login() {
 
 
@@ -58,3 +57,4 @@ export class LoginComponent {
 
 }
 }
+
