@@ -46,8 +46,10 @@ export class LoginComponent {
   this.servicioUsuario
   .SingIn(this.email,this.password)
   .subscribe({
-  next: (resp: boolean) => {
+  next: (resp: any) => {
     this.respuesta = resp;
+    console.log(this.respuesta);
+    localStorage.setItem('Token', 'Bearer ' + resp.accessToken);
   },
   error:  (err) => {
     console.error(err);
