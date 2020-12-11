@@ -1,116 +1,68 @@
 <header>
-    <section class="wrapper">
-        <nav>
-            <ul>
-                <li><a href="reuniones">Inicio</a></li>
-                <li><a href="crear-reunion">Crear Reunión</a></li>
-                <li><a href="login">Log out</a></li>
-            </ul>
-        </nav>
-    </section>
+  <section class="wrapper">
+      <nav>
+          <ul>
+              <li><a href="reuniones">Inicio</a></li>
+              <li><a href="crear-reunion">Crear Reunión</a></li>
+              <li><a href="login">Log out</a></li>
+          </ul>
+      </nav>
+  </section>
 
-  </header>
+</header>
 
 <div class="jumbotron jumbotron-fluid">
-    <div style="text-align: center;">
-        <div class="container">
-        <h1 class="display-10">CREAR REUNIÓN</h1>
-        </div>
-    </div>
+  <div style="text-align: center;">
+      <div class="container">
+      <h1 class="display-10">CREAR REUNIÓN</h1>
+      </div>
   </div>
-
-
-<div class="container">
-
-
-            <div class="form-group">
-              <label for="temas">Nombre reunión</label>
-              <br>
-              <input type="temas"
-              [(ngModel)]="temas"
-              name="temas"
-              required="temas"/>
-            </div>
-            <br> <br>
-            <div class="form-group">
-                <label for="descripcion">Descripcion</label>
-                <br>
-                <input type="descripcion"
-                [(ngModel)]="descripcion"
-                name="descripcion"
-                required="descripcion"/>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <label for="horaInicio">Hora inicio</label>
-                    <input type="datetime-local" class="form-control" [(ngModel)]="horaInicio" name="horaInicio" required="horaInicio">
-                </div>
-                <div class="col">
-                    <label for="horaFin">Hora fin</label>
-                    <input type="datetime-local" class="form-control" [(ngModel)]="horaFin" name="horaFin" required="horaFin">
-                </div>
-            </div>
-
-            <br>
-
-            <div class="form-group">
-              <div class="row">
-                <div class="col">
-                  <div class="row">
-                    <label for="asistentes">Asistentes Disponibles</label>
-                    <select style="height: 200px;" class="custom-select" id="asistentes" required multiple="multiple"multiple>
-                        <option selected disabled value="">Elige...</option>
-                        <option
-                        *ngFor= "let usuariosRegistrado of usuariosRegistrados, let indexOfElement = index;"
-                        (click)="actualizarIndexAdd(indexOfElement)"
-                        [value]= "usuariosRegistrado.username"
-                        >
-                        {{usuariosRegistrado.username}}
-                        </option>
-                      </select>
-                  </div>
-                  <div class="row">
-                    <button class="btn btn-primary" style="margin-top: 5px;" (click)="addAsistente()"> Añadir Asistente</button>
-                  </div>
-                  <div class="invalid-feedback">
-                      Por favor elija un asistente
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="row">
-                    <label for="asistentes">Asistentes Añadidos</label>
-                  <select class="custom-select" style="height: 200px;" id="asistentes" required multiple="multiple"multiple>
-                      <option selected disabled value="">Asistentes elegidos...</option>
-                      <option
-                       *ngFor= "let usuariosElegido of usuariosElegidos, let indexOfElement = index"
-                       (click)="actualizarIndexDelete(indexOfElement)"
-                       [value]= "usuariosElegido.username"
-                      >
-                      {{usuariosElegido.username}}
-                      </option>
-                    </select>
-                  </div>
-                  <div class="row">
-                    <button class="btn btn-primary" style="margin-top: 5px; " (click)="deleteAsistente()">  Eliminar Asistente</button>
-                  </div>
-
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-                <label for="convocante"> <strong>Convocante: {{nombreUsuario}}</strong></label>
-            </div>
-
-
-
-
-    <br>
-    <button type="submit" class="btn btn-primary" (click)="reunion()">Crear reunión</button>
-
 </div>
 
 
+<div class="container">
+        
+        <br> <br>
+        <form action="">
+          
+          <div class="contenedor-inputs">
+            <label>Titulo de la reunión:</label><br>
+            <input type="text" 
+            id="tituloConvocar" 
+            size="50"
+            placeholder="Titulo">
+
+            <br><br>
+
+            <label> Descripción de la reunión:</label><br>
+            <input type="text" 
+            id="descripcionConvocar" 
+            placeholder="Descripción"
+            size="50"
+            maxlength="30">
+
+            <br><br>
+
+            <label>Fecha y hora de la reunión:</label><br>
+            <input type="datetime-local" 
+            id="fechaconvocar"
+            name="trip-start" 
+            value="2020-07-22" 
+            min="2018-01-01"
+            min="08:00" 
+            max="21:00" > 
+
+            <br><br>
 
 
+          <p>Selecciona los asistentes:</p>
+          <p>(Pulse la tecla Ctrl para seleccionar varios)</p>
+          <p>
+          <select name="asistentesConvocar[]" id = "arrayAsistentes" multiple>
+          </select>
+          </p>
 
+          <input type="submit" class="btn-submit" onclick="guardarReunion()" value="GUARDAR">
+
+
+</div>
