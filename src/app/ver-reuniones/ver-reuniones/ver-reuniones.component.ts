@@ -111,6 +111,22 @@ export class VerReunionesComponent implements OnInit {
   handleEventClick(clickInfo: EventClickArg) {
     //Implementar si queremos que haga algo al hacer click en la reunion en el calendario.   
     
+    if(this.deleteboolean){
+
+      for (let i = 0; i < this.reuniones.length; i++){
+        if(this.reuniones[i].titulo==clickInfo.event.title){
+          var dia = this.reuniones[i].dia
+          var mes = this.reuniones[i].mes
+          var ano = this.reuniones[i].ano
+          var hora = this.reuniones[i].hora
+        }
+      }
+
+      this.reunionService.delete(dia,mes,ano,hora);
+
+      alert("Reunion borrada")
+
+    }else{
     
     for (let i = 0; i < this.reuniones.length; i++){
       if(this.reuniones[i].titulo==clickInfo.event.title){
@@ -135,6 +151,7 @@ export class VerReunionesComponent implements OnInit {
     +"Assistentes: "+assis+"\n"
     +"Descripcion: "+desc)
     
+  }
 
   }
 

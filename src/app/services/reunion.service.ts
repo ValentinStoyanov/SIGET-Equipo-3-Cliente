@@ -29,4 +29,18 @@ export class ReunionService {
   }
 
 
+  delete(dia: number, mes: number, ano: number, hora: string) {
+    this.http.post<any>(`http://localhost:8080/reunion/delete?dia=${dia}&mes=${mes}&ano=${ano}&hora=${hora}`, { title: 'Angular POST delete' }).subscribe({
+        next: data => {
+            this.postId = data.id;
+        },
+        error: error => {
+            this.errorMessage = error.message;
+            console.error('There was an error!', error);
+        }
+    })
+}
+
+
+
 }
