@@ -10,7 +10,7 @@ import { UsuarioService } from '../services/usuario.service';
   templateUrl: './crear-reunion.component.html',
   styleUrls: ['./crear-reunion.component.css']
 })
-export class CrearReunionComponent implements OnInit {
+export class CrearReunionComponent  {
   constructor(public router: Router, private reunionServicio: ReunionService, private usuarioServicio: UsuarioService) { }
   temas: string;
   descripcion: string;
@@ -27,17 +27,7 @@ export class CrearReunionComponent implements OnInit {
 
 
 
-  ngOnInit(): void{
-        this.usuarioServicio.getAll().subscribe({
-      next: (usuariosReceived: UsuarioDto[]) =>{
-        (this.usuariosRegistrados = usuariosReceived);
-      },
-      error: (err) => {
-        console.error(err);
-      },
-      complete: () => (console.log("OK")),
-    });
-  }
+
 
 
   reunion(): void {

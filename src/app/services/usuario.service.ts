@@ -15,26 +15,16 @@ export class UsuarioService {
   }
 
   SingIn(username: string, password: string):any {
-    return this.http.post<any>(`http://localhost:8080/api/auth/signin`,{ type : "Login",
+    return this.http.post<any>(`https://sigetequipo3.herokuapp.com/api/auth/signin`,{ type : "Login",
      username : username,
       password : password});
   }
 
 
-//
 
-
-  getAll(): Observable<UsuarioDto[]> {
-    return this.http.get<any>(`https://siget-grupo2.herokuapp.com/usuarios/getAll`)
-    .pipe(
-      map((usuarioDto: UsuarioDto[]) => {
-        return usuarioDto;
-      })
-    );
-  }
 
   createUsuario(username: string, email: string, password: string): any {
-    return this.http.post<any>(`http://localhost:8080/api/auth/signup
+    return this.http.post<any>(`https://sigetequipo3.herokuapp.com/api/auth/signup
     `, {type: "Register",
     username: username,
     email: email,
