@@ -19,7 +19,7 @@ export class ReunionService {
  
 
   getByAsistentes(name: string): Observable<ReunionDto[]> {
-    return this.http.get<any>(`http://localhost:8080/reunion/get?asistentes=${name}`)
+    return this.http.get<any>(`https://sigetequipo3.herokuapp.com/reunion/get?asistentes=${name}`)
     .pipe(
       map((reunionesDto: ReunionDto[]) => {
         console.log(reunionesDto);
@@ -30,7 +30,7 @@ export class ReunionService {
 
 
   delete(dia: number, mes: number, ano: number, hora: string) {
-    this.http.post<any>(`http://localhost:8080/reunion/delete?dia=${dia}&mes=${mes}&ano=${ano}&hora=${hora}`, { title: 'Angular POST delete' }).subscribe({
+    this.http.post<any>(`https://sigetequipo3.herokuapp.com/reunion/delete?dia=${dia}&mes=${mes}&ano=${ano}&hora=${hora}`, { title: 'Angular POST delete' }).subscribe({
         next: data => {
             this.postId = data.id;
         },
