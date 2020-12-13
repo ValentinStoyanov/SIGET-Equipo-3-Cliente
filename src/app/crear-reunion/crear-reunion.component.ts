@@ -55,9 +55,7 @@ export class CrearReunionComponent  {
     alert('Creando reunion')
 
     const fecha: string = this.form.controls.fecha.value.substring(0,4)+"-"+ this.form.controls.fecha.value.substring(5,7)+"-"+this.form.controls.fecha.value.substring(8,10);
-    console.log(fecha);
     const hora: string = this.form.controls.fecha.value.substring(11,16);
-    console.log(hora);
     this.reunionServicio
     .createReunion(this.form.controls.titulo.value, this.form.controls.descripcion.value, hora, fecha, this.asistentes);
 
