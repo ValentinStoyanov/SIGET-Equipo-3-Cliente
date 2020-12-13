@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UsuarioDto } from '../common/usuario.dto';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AsistenteDto } from '../common/asistente.dto';
 
 
 @Injectable({
@@ -23,6 +24,7 @@ export class UsuarioService {
 
 
 
+
   createUsuario(username: string, email: string, password: string): any {
     return this.http.post<any>(`https://sigetequipo3.herokuapp.com/api/auth/signup
     `, {type: "Register",
@@ -38,5 +40,23 @@ export class UsuarioService {
       }
   });
   }
-  
+  getAsistentes(): Observable<AsistenteDto[]> {
+    const headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Authorization': localStorage.getItem("Token"),
+    }
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+    return this.http.post<any>(`https://sigetequipo3.herokuapp.com/reunion/getAsistentes`,{type: "getAsistentes",}, requestOptions)
+    .pipe(
+      map((asistenteDto: AsistenteDto[]) => {
+        console.log(asistenteDto);
+        return asistenteDto;
+      })
+    );
+  }
+
 }

@@ -21,22 +21,24 @@
 
 
 <div class="container">
-        
+
         <br> <br>
-        <form action="">
-          
+        <form [formGroup]="form">
+
           <div class="contenedor-inputs">
             <label>Titulo de la reunión:</label><br>
-            <input type="text" 
-            id="tituloConvocar" 
+            <input type="text"
+            formControlName="titulo"
+            id="tituloConvocar"
             size="50"
             placeholder="Titulo">
 
             <br><br>
 
             <label> Descripción de la reunión:</label><br>
-            <input type="text" 
-            id="descripcionConvocar" 
+            <input type="text"
+            formControlName="descripcion"
+            id="descripcionConvocar"
             placeholder="Descripción"
             size="50"
             maxlength="30">
@@ -44,26 +46,63 @@
             <br><br>
 
             <label>Fecha y hora de la reunión:</label><br>
-            <input type="datetime-local" 
+            <input type="datetime-local"
+            formControlName="fecha"
             id="fechaconvocar"
-            name="trip-start" 
-            value="2020-07-22" 
+            name="trip-start"
+            value="2020-07-22"
             min="2018-01-01"
-            min="08:00" 
-            max="21:00" > 
+            min="08:00"
+            max="21:00" >
 
             <br><br>
 
 
-          <p>Selecciona los asistentes:</p>
-          <p>(Pulse la tecla Ctrl para seleccionar varios)</p>
-          <p>
-          <select name="asistentesConvocar[]" id = "arrayAsistentes" multiple>
-          </select>
-          </p>
+            <div class="row">
+              <div class="col">
+                <div class="row">
+                  <label for="asistentes">Asistentes Disponibles</label>
+                  <select style="height: 200px;" class="custom-select" id="asistentes" required multiple="multiple"multiple>
+                      <option selected disabled value="">Elige...</option>
+                      <option
+                      *ngFor= "let usuariosRegistrado of usuariosRegistrados, let indexOfElement = index;"
+                      (click)="actualizarIndexAdd(indexOfElement)"
+                      [value]= "usuariosRegistrado"
+                      >
+                      {{usuariosRegistrado}}
+                      </option>
+                    </select>
+                </div>
+                <div class="row">
+                  <button class="btn btn-primary" style="margin-top: 5px;" (click)="addAsistente()"> Añadir Asistente</button>
+                </div>
+                <div class="invalid-feedback">
+                    Por favor elija un asistente
+                </div>
+              </div>
+              <div class="col">
+                <div class="row">
+                  <label for="asistentes">Asistentes Añadidos</label>
+                <select class="custom-select" style="height: 200px;" id="asistentes" required multiple="multiple"multiple>
+                    <option selected disabled value="">Asistentes elegidos...</option>
+                    <option
+                     *ngFor= "let usuariosElegido of usuariosElegidos, let indexOfElement = index"
+                     (click)="actualizarIndexDelete(indexOfElement)"
+                     [value]= "usuariosElegido"
+                    >
+                    {{usuariosElegido}}
+                    </option>
+                  </select>
+                </div>
+                <div class="row">
+                  <button class="btn btn-primary" style="margin-top: 5px; " (click)="deleteAsistente()">  Eliminar Asistente</button>
+                </div>
+
+              </div>
+            </div>
 
 
-          <input type="submit" class="btn-submit" onclick="guardarReunion()" value="GUARDAR">
+          <input type="submit" class="btn-submit" style="margin-top: 5px;" (click)="reunion()">
 
 
 </div>
