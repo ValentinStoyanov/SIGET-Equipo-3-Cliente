@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { LoginComponent } from "./login/login.component";
 import { AppRoutingModule } from './app-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { VerReunionesComponent } from './ver-reuniones/ver-reuniones/ver-reuniones.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -27,7 +27,7 @@ FullCalendarModule.registerPlugins([
 
 @NgModule({
   declarations: [
-    AppComponent, 
+    AppComponent,
     LoginComponent,
     VerReunionesComponent,
     CrearReunionComponent,
@@ -42,7 +42,8 @@ FullCalendarModule.registerPlugins([
     FullCalendarModule,
     MatCardModule ,
     BrowserModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
