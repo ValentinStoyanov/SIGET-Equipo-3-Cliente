@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UsuarioDto } from '../common/usuario.dto';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AsistenteDto } from '../common/asistente.dto';
 
 
 @Injectable({
@@ -18,6 +19,15 @@ export class UsuarioService {
     return this.http.post<any>(`https://sigetequipo3.herokuapp.com/api/auth/signin`,{ type : "Login",
      username : username,
       password : password});
+  }
+
+  getAll(): Observable<UsuarioDto[]> {
+    return this.http.get<any>(`http://localhost:8080/api/auth/getAll`)
+    .pipe(
+      map((usuarioDto: UsuarioDto[]) => {
+        return usuarioDto;
+      })
+    );
   }
 
 
@@ -37,6 +47,26 @@ export class UsuarioService {
           console.error('There was an error!', error);
       }
   });
+  }
+
+
+  getAsistentes(): Observable<AsistenteDto[]> {
+    const headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Authorization': localStorage.getItem("Token"),
+    }
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+    return this.http.post<any>(`https://sigetequipo3.herokuapp.com/reunion/getAsistentes`,{type: "getAsistentes",}, requestOptions)
+    .pipe(
+      map((asistenteDto: AsistenteDto[]) => {
+        console.log(asistenteDto);
+        return asistenteDto;
+      })
+    );
   }
   
 }

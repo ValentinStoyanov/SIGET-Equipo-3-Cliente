@@ -1,5 +1,5 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ReunionDto } from '../common/reunion.dto';
@@ -40,6 +40,43 @@ export class ReunionService {
         }
     })
 }
+
+
+updateReunion(titulo: string, descripcion: string, hora: string, dia: string,mes: string,ano:string, asistentes: string[]): void {
+  this.http.post<any>(`https://sigetequipo3.herokuapp.com/reunion/update?titulo=${titulo}&dia=${dia}&mes=${mes}&ano=${ano}&hora=${hora}&descripcion=${descripcion}`, {});
+}
+
+createReunion(titulo: string, descripcion: string, hora: string, fecha: string, asistentes: string[]): void {
+  console.log(titulo);
+  console.log(descripcion);
+  console.log(hora);
+  console.log(fecha);
+  console.log(asistentes);
+  const headerDict = {
+    'Content-Type': 'application/json',
+    'Accept': 'application/json',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Authorization': localStorage.getItem("Token"),
+  }
+  const requestOptions = {
+    headers: new HttpHeaders(headerDict),
+  };
+  this.http.post<any>(`https://sigetequipo3.herokuapp.com/reunion/convocar
+  `, {type: "ConvocarReunion",
+  titulo: titulo,
+  descripcion: descripcion,
+  hora: hora,
+  fecha: fecha,
+  asistentes: asistentes,
+},requestOptions).subscribe({
+  next: data => {
+  },
+  error: error => {
+      console.error('There was an error!', error);
+  }
+});
+}
+
 
 
 
