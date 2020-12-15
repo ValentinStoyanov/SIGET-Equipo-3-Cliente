@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ReunionDto } from '../common/reunion.dto';
-import { AsistenteDto } from '../common/asistente.dto';
+
 
 
 @Injectable({

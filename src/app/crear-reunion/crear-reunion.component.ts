@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { ReunionDto } from 'src/app/common/reunion.dto';
 import { Router } from '@angular/router';
 import { ReunionService } from 'src/app/services/reunion.service';
-import { UsuarioDto } from '../common/usuario.dto';
 import { UsuarioService } from '../services/usuario.service';
 import { AsistenteDto } from '../common/asistente.dto';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-crear-reunion',
