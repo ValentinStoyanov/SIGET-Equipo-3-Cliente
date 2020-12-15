@@ -1,70 +1,13 @@
-<!DOCTYPE html>
-<html lang="es" xml:lang="es">
-
-<head>
-    <title>
-        Formulario de registro
-    </title>
-</head>
-
-<div class="container">
-
-    <body>
-        <section>
-
-            <div class="jumbotron jumbotron-fluid">
-                <div style="text-align: center;">
-                    <div class="container">
-                        <h1 class="display-10">Formulario de registro</h1>
-                    </div>
-                </div>
-            </div>
-
-            <label>Username:</label>
-            <input type="username" [(ngModel)]="username" name="username" placeholder="Username" required="username" />
+<div class="register">
+    <form class="custom-form" method="post">
+        <h1>Registrar</h1>
+        <input type="username" [(ngModel)]="username" name="username" placeholder="Username" required="required" />
+        <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required="required" />
+        <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required="required" />
+        <button type="submit" (click)="metodoRegistrar()">Registrar</button>
+        <ul>
             <br>
-
-            <label>Password:</label>
-            <input type="password" [(ngModel)]="password" name="password" placeholder="Password" required="password" />
-            <br>
-
-
-            <label>Nombre:</label>
-            <input type="nombre" [(ngModel)]="nombre" name="nombre" placeholder="Nombre" required="nombre" />
-            <br>
-
-            <label>Apellidos:</label>
-            <input type="apellidos" [(ngModel)]="apellidos" name="apellidos" placeholder="Apellidos"
-                required="apellidos" />
-            <br>
-
-            <label>Email:</label>
-            <input type="email" [(ngModel)]="email" name="email" placeholder="Email" required="email" />
-            <br>
-
-            <label>Telefono:</label>
-            <input type="telefono" [(ngModel)]="telefono" name="telefono" placeholder="Telefono" required="telefono" />
-            <br>
-
-
-            <p>
-                Estoy de acuerdo con <a href="#">Terminos y condiciones</a>
-            </p>
-            <br>
-
-            <button (click)="metodoRegistrar()"> Registrar </button>
-
-            <p>
-                <br>
-                <a href="#">¿Ya tengo cuenta?</a>
-                <ul>
-                 <li style="float:right;"><a href="login">Volver a login</a></li>
- <              </ul>
-            </p>
-
-        </section>
-    </body>
-
+            <li><a href="login">¿Ya tengo cuenta?</a></li>
+        </ul>
+    </form>
 </div>
-
-</html>

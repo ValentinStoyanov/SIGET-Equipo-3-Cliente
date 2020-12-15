@@ -1,10 +1,18 @@
+import { IsString, IsNotEmpty } from 'class-validator';
+import { AsistenteDto } from './asistente.dto';
 
 export class ReunionDto {
- 
-  temas: string;
+  
+  @IsNotEmpty()
+  @IsString()
+  organizador: string;
+  titulo:string;
+  estado: string;
+  dia: number;
+  mes: number;
+  ano: number;
+  hora: string;
   descripcion: string;
-  horaInicio: string;
-  horaFin: string;
-  asistentes: string[];
-  convocante: string;
+  asistentes: AsistenteDto[];
+
 }

@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UsuarioDto } from '../common/usuario.dto';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AsistenteDto } from '../common/asistente.dto';
 
 
 @Injectable({
@@ -14,24 +15,22 @@ export class UsuarioService {
   constructor(private readonly http: HttpClient) {
   }
 
-//
-  getLogin(usuario: UsuarioDto): any {
-    return this.http.post<any>(`https://siget-grupo2.herokuapp.com/usuarios/login?username=${usuario.username}&password=${usuario.password}`, {});
+  SingIn(username: string, password: string):any {
+    return this.http.post<any>(`https://sigetequipo3.herokuapp.com/api/auth/signin`,{ type : "Login",
+     username : username,
+      password : password});
   }
 
 
-  getAll(): Observable<UsuarioDto[]> {
-    return this.http.get<any>(`https://siget-grupo2.herokuapp.com/usuarios/getAll`)
-    .pipe(
-      map((usuarioDto: UsuarioDto[]) => {
-        return usuarioDto;
-      })
-    );
-  }
 
-  createUsuario(usuario: UsuarioDto): any {
-    return this.http.post<any>(`https://siget-grupo2.herokuapp.com/usuarios/createUsuario?username=${usuario.username}&password=${usuario.password}&nombre=${usuario.nombre}&apellidos=${usuario.apellidos}&email=${usuario.email}&telefono=${usuario.telefono}
-    `, {}).subscribe({
+
+
+  createUsuario(username: string, email: string, password: string): any {
+    return this.http.post<any>(`https://sigetequipo3.herokuapp.com/api/auth/signup
+    `, {type: "Register",
+    username: username,
+    email: email,
+    password: password}).subscribe({
       next: data => {
           this.postId = data.id;
       },
@@ -41,5 +40,23 @@ export class UsuarioService {
       }
   });
   }
-  
+  getAsistentes(): Observable<AsistenteDto[]> {
+    const headerDict = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Authorization': localStorage.getItem("Token"),
+    }
+    const requestOptions = {
+      headers: new HttpHeaders(headerDict),
+    };
+    return this.http.post<any>(`https://sigetequipo3.herokuapp.com/reunion/getAsistentes`,{type: "getAsistentes",}, requestOptions)
+    .pipe(
+      map((asistenteDto: AsistenteDto[]) => {
+        console.log(asistenteDto);
+        return asistenteDto;
+      })
+    );
+  }
+
 }
