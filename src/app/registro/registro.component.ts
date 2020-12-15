@@ -34,6 +34,7 @@ export class RegistroComponent implements OnInit {
             }else{
                 alert ('Rellene todos los campos')
             }            
+
         } else {
             alert('La contraseña debe tener como mínimo 8 caracteres, un mayúscula y un minúscula ')
         }

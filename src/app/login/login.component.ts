@@ -2,7 +2,6 @@
 
 import { Component } from "@angular/core";
 import { Router } from '@angular/router';
-import { timeout } from 'rxjs/operators';
 import { UsuarioDto } from '../common/usuario.dto';
 import { UsuarioService } from '../services/usuario.service';
 
